@@ -13,4 +13,5 @@ Route::get('post/about/param}/{name}',[PostController::class,'About']);
     return view('welcome');
 });*/
 
+Route::get('/empresa',[HomeController::class,'empresa'])->name('empresa');
 
