@@ -19,7 +19,20 @@ class HomeController extends Controller
         $datos["texto_ejemplo"]="Aquí va la descripción del texto de ejemplo";
 
         $usuarios=new Pagina();
-        $datos["listadousuarios"]=$usuarios->ObtenerListado();
+       $datos["listadousuarios"]=$usuarios->ObtenerListado();
         return view('empresa',$datos);
     }
+    public function update(Request $request){
+            $usuarios=new Pagina();
+            $respuesta=$usuarios->BuscarId($request->id);
+            if(!empty($respuesta)){
+                $respuesta->name=$request->name;
+                $respuesta->calle=$request->calle;
+                $respuesta->save();
+            }
+            return $respuesta;
+        }
+
+    
+
 }

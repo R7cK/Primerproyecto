@@ -34,10 +34,11 @@
 @section("texto_ejemplo")
     {{ $texto_ejemplo }}
 @endsection
+
 @section("contenido_listado")
     <h2>Listado de Usuarios Registrados</h2>
     <ul>
-        @if(iseet($listadousuarios))
+        @if(isset($listadousuarios))
         <table id='tablausuarios' class="table
         table-striped table-bordered">
         <thead>
@@ -49,14 +50,15 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($listadousuarios as $usuario)
-            <tr>
-                <td>{{ $usuario->name }}</td>
-                <td>{{ $usuario->email }}</td>
-                <td>{{ $usuario->telefono }}</td>
-                <td>{{ $usuario->calle }}</td>
-            </tr>
-            @endforeach
+           @foreach($listadousuarios as $usuario)
+                    <tr>
+                        <td>{{$usuario->name}}</td>
+                        <td>{{$usuario->email}}</td>
+                        <td>{{$usuario->telefono}}</td>
+                        <td>{{$usuario->calle}}</td>
+                        <td><button class='btn btn-primary' onclick="carga_modal({{$usuario->id}}, '{{$usuario->name}}', '{{$usuario->calle}}')" data-id="{{$usuario->id}}" data-nombre="{{$usuario->name}}" data-calle="{{$usuario->calle}}" data-toggle="modal" data-target="#myModal"><span class='fa fa-pencil'></span></button></td>
+                    </tr>
+                @endforeach
         </tbody>
     </table>    
     @else
@@ -65,4 +67,24 @@
         </p>
     @endif
     </ul>
+@endsection
+
+
+
+
+@section('content')
+<div class="container my-5 text-center">
+    <x-search-location />
+
+    <div class="mt-5">
+        <h3 class="fw-bold">Nuestros pilares en Mérida</h3>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <i class="fas fa-leaf text-success fa-2x mb-2"></i>
+                <h5>Logística Verde</h5>
+                <p class="small text-muted">Entregas en bicicleta reduciendo la huella de carbono.</p>
+            </div>
+            </div>
+    </div>
+</div>
 @endsection
