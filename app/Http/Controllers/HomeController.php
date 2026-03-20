@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Pagina;
 use Illuminate\Http\Request;
+use App\Models\Pagina;
 use Yajra\Datatables\Datatables;
 
 class HomeController extends Controller
