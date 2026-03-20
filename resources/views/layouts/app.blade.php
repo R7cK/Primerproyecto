@@ -154,12 +154,6 @@
     <script>
         $(document).ready(function () {
             $('#tablausuarios').DataTable({
-                columns: [
-                    { data: 'name' },
-                    { data: 'email' },
-                    { data: 'telefono' },
-                    { data: 'calle' }
-                ]
             });
         });
 
@@ -189,6 +183,46 @@ $("#editForm").on('submit', function(e){
         }
     })
 })
+
+function eliminar_logico(id) {
+    if(confirm("¿Estás seguro de desactivar este registro (Borrado Lógico)?")) {
+        $.ajax({
+            url: '/eliminar-logico/' + id,
+            type: 'POST',
+            data: {
+                _method: 'PUT', // Usamos PUT para actualizar el estatus
+                _token: $('input[name="_token"]').val() // Tomamos el token del formulario modal que ya existe
+            },
+            success: function(response){
+                alert(response.mensaje);
+                location.reload();
+            },
+            error: function(xhr){
+                console.log(xhr.responseText);
+            }
+        });
+    }
+}
+
+function eliminar_fisico(id) {
+    if(confirm("¿Estás seguro de ELIMINAR permanentemente este registro de la base de datos (Borrado Físico)? ¡Esta acción no se puede deshacer!")) {
+        $.ajax({
+            url: '/eliminar-fisico/' + id,
+            type: 'POST',
+            data: {
+                _method: 'DELETE', // Método DELETE para borrado físico
+                _token: $('input[name="_token"]').val()
+            },
+            success: function(response){
+                alert(response.mensaje);
+                location.reload();
+            },
+            error: function(xhr){
+                console.log(xhr.responseText);
+            }
+        });
+    }
+}
     </script>
 </body>
 </html>

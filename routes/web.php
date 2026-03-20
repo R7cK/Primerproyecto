@@ -97,5 +97,5 @@ Route::get('Obtenerestatus',function(){
 });
 
 Route::put('/actualizar-dato/{id}',[HomeController::class,'update'])->name('dato,update');
-
-
+Route::put('/eliminar-logico/{id}', [HomeController::class, 'borradoLogico']);
+Route::delete('/eliminar-fisico/{id}', [HomeController::class, 'borradoFisico']);

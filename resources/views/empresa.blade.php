@@ -60,7 +60,11 @@
                         <td><button class='btn btn-primary' onclick="carga_modal({{$usuario->id}}, 
                         '{{$usuario->name}}', '{{$usuario->calle}}')" data-id="{{$usuario->id}}" 
                         data-nombre="{{$usuario->name}}" data-calle="{{$usuario->calle}}" 
-                        data-toggle="modal" data-target="#myModal"><span class='fa fa-pencil'></span></button></td>
+                        data-toggle="modal" data-target="#myModal"><span class='fa fa-pencil'></span></button>
+                        <button class='btn btn-warning' onclick="eliminar_logico({{$usuario->id}})"><span class='fa fa-ban'></span> Lógico</button>
+                        <button class='btn btn-danger' onclick="eliminar_fisico({{$usuario->id}})"><span class='fa fa-trash'></span> Físico </button>
+                        </td>
+                        
                     </tr>
                 @endforeach
         </tbody>

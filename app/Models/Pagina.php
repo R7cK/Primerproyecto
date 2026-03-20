@@ -9,10 +9,10 @@ class Pagina extends Model
     // Esta como protected porque es un dato sensible.
     protected $table='paginas';
 // Se usa cuando yo vaya a llamar a una consulta, a un dato que yo quiera y le pueda asignar ese formato
-    protected function cast(): array{
-        return[
-            'created at' => 'datetime:d-m-Y',
-            'is_active=>boolean'
+    protected function casts(): array { 
+        return [
+            'created_at' => 'datetime:d-m-Y', 
+            'is_active' => 'boolean'         
         ];
     }
 
@@ -21,7 +21,7 @@ class Pagina extends Model
             //Todo proceso antes de guardarlo  en base de datos, asi se va a guardar
             set: function ($value){//Mutador
                 return strtolower ($value);
-            },// Asi es como se va a ver en la base de datos, es el fotmato en el que vera el usuario
+            },// Asi es como se va a ver en la base de datos, es el formato en el que vera el usuario
             // vast y get son algo similares, en el cast me da todo el formato, y en el get necesito uno por cada campo
             get:function($value){//Accesor
                 return ucfirst($value);
@@ -30,13 +30,13 @@ class Pagina extends Model
     }
 
     public function ObtenerListado(){
-        $listadousuarios=Pagina::all();
+        $listadousuarios = Pagina::where('is_active', 1)->get();
         return $listadousuarios;
     }
 
-    public function BuscarId($id){
-        $listadousuarios=Pagina::all();
-        return $listadousuarios;
+   public function BuscarId($id){
+        $usuario=Pagina::find($id);
+        return $usuario;
     }
 
         
